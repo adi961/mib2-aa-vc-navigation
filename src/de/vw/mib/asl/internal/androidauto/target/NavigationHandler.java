@@ -2,7 +2,6 @@ package de.vw.mib.asl.internal.androidauto.target;
 
 import de.adi961.miblogger.MIBLogger;
 import de.vw.mib.asl.api.navbap.ASLNavBAPFactory;
-import de.vw.mib.asl.internal.navigation.api.impl.ext.map.instrumentcluster.ICMapServiceImpl;
 import de.vw.mib.bap.mqbab2.common.api.APIFactory;
 import de.vw.mib.bap.mqbab2.common.api.navigation.NavigationASLDataAdapter;
 import org.dsi.ifc.androidauto2.Constants;
@@ -37,11 +36,12 @@ public class NavigationHandler {
     private void navStopped() {
         nextTurn = null;
         ASLNavBAPFactory.getNavBAPApi().updateBapTurnToInfo("", "");
+        maneuverDescriptorSender.reset();
     }
 
     private void navStarted() {
-        ICMapServiceImpl.notifySwitchMapToAbt();
         nextTurn = null;
+        maneuverDescriptorSender.reset();
     }
 
     public void handleNextTurnEvent(String road, int turnSide, int event, int turnAngle, int turnNumber) {

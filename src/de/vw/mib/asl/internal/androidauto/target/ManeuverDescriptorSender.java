@@ -11,6 +11,10 @@ public class ManeuverDescriptorSender {
 
     private BapManeuverDescriptor lastManeuverDescriptor;
 
+    public void reset() {
+        lastManeuverDescriptor = null;
+    }
+
     public void send(BapManeuverDescriptor bapManeuverDescriptor) {
         if (lastManeuverDescriptor != null && lastManeuverDescriptor.toString().equals(bapManeuverDescriptor.toString())) {
             MIBLogger.getInstance().debug("same maneuver descriptor. Not sending.");

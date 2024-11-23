@@ -7,6 +7,7 @@ import de.adi961.miblogger.MIBLogger;
 import de.vw.mib.asl.api.androidauto.ASLAndroidAutoFactory;
 import de.vw.mib.asl.api.exboxm.ASLExboxmFactory;
 import de.vw.mib.asl.api.exboxm.guidance.ExboxGuidanceManager;
+import de.vw.mib.asl.api.navbap.ASLNavBAPFactory;
 import de.vw.mib.asl.api.navigation.ASLNavigationFactory;
 import de.vw.mib.asl.api.navigation.ASLNavigationServices;
 import de.vw.mib.asl.framework.api.displaymanagement.ASLDisplaymanagementFactory;
@@ -185,6 +186,9 @@ public class AndroidAutoTarget
             this.trace("Target AndroidAuto - service set, now set notification!");
         }
         this.dsiAndroidAuto2.setNotification(this.DSI_ANDROIDAUTO2_ATTR, this.dsiAndroidAuto2Listener);
+
+        this.dsihandler.handleDsiAndroidAuto2NavFocusRequestNotification(Constants.NAVFOCUS_NATIVE, 1);
+        this.navigationHandler.navigationFocus(Constants.NAVFOCUS_NATIVE);
     }
 
     private void deInitializeDSI() {
